@@ -1,5 +1,5 @@
 {
-  "name": "react-form-components",
+  "name": "react-formidable",
   "version": "1.0.0",
   "description": "A library of components for building forms in React",
   "main": "index.js",
