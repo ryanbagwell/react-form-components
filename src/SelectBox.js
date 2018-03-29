@@ -20,7 +20,10 @@ export default class SelectBox extends React.Component {
 
   static propTypes = {
     choices: PropTypes.array,
-    selectedChoice: PropTypes.object,
+    selectedChoice: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object,
+    ]),
     arrow: PropTypes.element,
     required: PropTypes.bool,
     name: PropTypes.string,
@@ -63,7 +66,7 @@ export default class SelectBox extends React.Component {
   }
 
   handleOnChange = (e) => {
-    let val = e.currentTarget.value;
+    let val = e.target.value;
 
     let selectedChoice = this.state.choices.find((choice) => {
 
