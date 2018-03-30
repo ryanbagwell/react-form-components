@@ -12,7 +12,7 @@ export default {
   context: path.resolve(__dirname, 'src'),
 
   entry: {
-    'index': 'NotificationBar',
+    'index': 'index.js',
   },
 
   output: {
@@ -38,28 +38,11 @@ export default {
         exclude: /node_modules/,
         loaders: ['babel-loader'],
       },
-      {
-        test: /\.scss$/,
-        use: [
-          {
-            loader: 'style-loader',
-            options: {
-              insertAt: 'top',
-            },
-          },
-          {
-            loader: 'css-loader',
-          },
-          {
-            loader: 'sass-loader',
-          },
-        ],
-      },
     ],
   },
 
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js',],
     symlinks: false,
     modules: [
       path.resolve(__dirname, 'src'),

@@ -16,6 +16,9 @@ const DownArrow = () => (
 )
 
 
+/**
+ * An html ````<select>```` element
+ */
 export default class SelectBox extends React.Component {
 
   static propTypes = {
