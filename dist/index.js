@@ -473,6 +473,7 @@ module.exports = ReactPropTypesSecret;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.TextArea = exports.Input = exports.FieldGroup = exports.CheckBox = exports.SelectBox = undefined;
 
 var _SelectBox = __webpack_require__(9);
 
@@ -496,13 +497,11 @@ var _TextArea2 = _interopRequireDefault(_TextArea);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = {
-  SelectBox: _SelectBox2.default,
-  CheckBox: _CheckBox2.default,
-  FieldGroup: _FieldGroup2.default,
-  Input: _Input2.default,
-  TextArea: _TextArea2.default
-};
+exports.SelectBox = _SelectBox2.default;
+exports.CheckBox = _CheckBox2.default;
+exports.FieldGroup = _FieldGroup2.default;
+exports.Input = _Input2.default;
+exports.TextArea = _TextArea2.default;
 
 /***/ }),
 /* 9 */
@@ -550,7 +549,7 @@ var DownArrow = function DownArrow() {
 };
 
 /**
- * An html ```<select>```` element
+ * An html ````<select>```` element
  */
 
 var SelectBox = function (_React$Component) {
@@ -2781,6 +2780,7 @@ var Input = function (_React$Component) {
         name: this.props.name,
         required: this.props.required,
         onBlur: this.checkValidityOnBlur,
+        autocomplete: this.props.autocomplete,
         ref: function ref(x) {
           return _this2.el = x;
         } });
@@ -2795,14 +2795,16 @@ Input.propTypes = {
   name: _propTypes2.default.string,
   type: _propTypes2.default.string,
   className: _propTypes2.default.string,
-  validateOnBlur: _propTypes2.default.bool
+  validateOnBlur: _propTypes2.default.bool,
+  autocomplete: _propTypes2.default.bool
 };
 Input.defaultProps = {
   required: false,
   name: '',
   type: 'text',
   className: 'Input',
-  validateOnBlur: true
+  validateOnBlur: true,
+  autocomplete: true
 };
 exports.default = Input;
 

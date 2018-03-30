@@ -4,7 +4,7 @@ import Input from './Input';
 import FieldGroup from './FieldGroup';
 import TextArea from './TextArea';
 
-export default {
+export {
   SelectBox,
   CheckBox,
   FieldGroup,
