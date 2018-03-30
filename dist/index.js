@@ -2780,7 +2780,7 @@ var Input = function (_React$Component) {
         name: this.props.name,
         required: this.props.required,
         onBlur: this.checkValidityOnBlur,
-        autocomplete: this.props.autocomplete,
+        autoComplete: this.props.autocomplete,
         ref: function ref(x) {
           return _this2.el = x;
         } });
@@ -2796,7 +2796,7 @@ Input.propTypes = {
   type: _propTypes2.default.string,
   className: _propTypes2.default.string,
   validateOnBlur: _propTypes2.default.bool,
-  autocomplete: _propTypes2.default.bool
+  autoComplete: _propTypes2.default.bool
 };
 Input.defaultProps = {
   required: false,
@@ -2804,7 +2804,7 @@ Input.defaultProps = {
   type: 'text',
   className: 'Input',
   validateOnBlur: true,
-  autocomplete: true
+  autoComplete: true
 };
 exports.default = Input;
 
