@@ -1,7 +1,7 @@
 import React from 'react';
 import Checkbox from '../Checkbox';
 import {shallow, mount, render, configure} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import Adapter from 'enzyme-adapter-react-15';
 
 configure({ adapter: new Adapter() });
 
