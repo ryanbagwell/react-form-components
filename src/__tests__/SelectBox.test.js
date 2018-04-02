@@ -1,5 +1,5 @@
 import React from 'react';
-import SelectBox from '../SelectBox';
+import SelectBox from '../SelectBox.js';
 import {shallow, mount, render, configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-15';
 
