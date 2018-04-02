@@ -1,5 +1,5 @@
 import React from 'react';
-import Checkbox from '../Checkbox';
+import Checkbox from '../CheckBox';
 import {shallow, mount, render, configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-15';
 
