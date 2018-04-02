@@ -30,7 +30,8 @@
       "/node_modules/"
     ],
     "moduleDirectories": [
-      "node_modules"
+      "node_modules",
+      "src"
     ]
   },
   "homepage": "https://github.com/ryanbagwell/react-form-components#readme",
