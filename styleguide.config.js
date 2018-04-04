@@ -14,5 +14,6 @@ module.exports = {
       ]
     }
   },
-  components: 'src/!(index).js'
+  components: 'src/!(index).js',
+  styleguideDir: './docs',
 }
