@@ -2575,10 +2575,13 @@ var SelectBox = function (_React$Component) {
 
       var selectedChoice = this.state.selectedChoice;
 
+      console.log(selectedChoice);
+
       return _react2.default.createElement(
         'div',
         {
           className: this.props.className,
+          'data-value': this.state.selectedChoice.value,
           style: {
             position: 'relative'
           } },

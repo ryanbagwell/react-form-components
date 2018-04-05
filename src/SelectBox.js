@@ -92,9 +92,12 @@ export default class SelectBox extends React.Component {
   render() {
     let selectedChoice = this.state.selectedChoice;
 
+    console.log(selectedChoice);
+
     return (
       <div
         className={this.props.className}
+        data-value={this.state.selectedChoice.value}
         style={{
           position: 'relative',
         }}>
