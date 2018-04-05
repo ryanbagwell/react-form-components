@@ -92,8 +92,6 @@ export default class SelectBox extends React.Component {
   render() {
     let selectedChoice = this.state.selectedChoice;
 
-    console.log(selectedChoice);
-
     return (
       <div
         className={this.props.className}
