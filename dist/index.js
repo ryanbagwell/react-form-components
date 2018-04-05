@@ -2575,8 +2575,6 @@ var SelectBox = function (_React$Component) {
 
       var selectedChoice = this.state.selectedChoice;
 
-      console.log(selectedChoice);
-
       return _react2.default.createElement(
         'div',
         {
