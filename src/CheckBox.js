@@ -7,12 +7,14 @@ export default class Checkbox extends React.Component {
     checked: PropTypes.bool,
     required: PropTypes.bool,
     name: PropTypes.string,
+    pattern: PropTypes.string,
   }
 
   static defaultProps = {
     checked: false,
     required: false,
     name: '',
+    pattern: '.*',
   }
 
   constructor(props) {

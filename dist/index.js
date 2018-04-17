@@ -2643,7 +2643,8 @@ SelectBox.propTypes = {
   required: _propTypes2.default.bool,
   name: _propTypes2.default.string,
   className: _propTypes2.default.string,
-  placeholder: _propTypes2.default.string
+  placeholder: _propTypes2.default.string,
+  pattern: _propTypes2.default.string
 };
 SelectBox.defaultProps = {
   choices: [],
@@ -2652,7 +2653,8 @@ SelectBox.defaultProps = {
   required: false,
   name: '',
   className: 'SelectBox',
-  placeholder: '- select -'
+  placeholder: '- select -',
+  pattern: '.*'
 };
 exports.default = SelectBox;
 
@@ -5063,12 +5065,14 @@ var Checkbox = function (_React$Component) {
 Checkbox.propTypes = {
   checked: _propTypes2.default.bool,
   required: _propTypes2.default.bool,
-  name: _propTypes2.default.string
+  name: _propTypes2.default.string,
+  pattern: _propTypes2.default.string
 };
 Checkbox.defaultProps = {
   checked: false,
   required: false,
-  name: ''
+  name: '',
+  pattern: '.*'
 };
 exports.default = Checkbox;
 
@@ -5132,6 +5136,7 @@ var Input = function (_React$Component) {
         required: this.props.required,
         onBlur: this.checkValidityOnBlur,
         autoComplete: this.props.autocomplete,
+        placeholder: this.props.placeholder,
         ref: function ref(x) {
           return _this2.el = x;
         } });
@@ -5147,7 +5152,9 @@ Input.propTypes = {
   type: _propTypes2.default.string,
   className: _propTypes2.default.string,
   validateOnBlur: _propTypes2.default.bool,
-  autoComplete: _propTypes2.default.bool
+  autoComplete: _propTypes2.default.bool,
+  placeholder: _propTypes2.default.string,
+  pattern: _propTypes2.default.string
 };
 Input.defaultProps = {
   required: false,
@@ -5155,7 +5162,9 @@ Input.defaultProps = {
   type: 'text',
   className: 'Input',
   validateOnBlur: true,
-  autoComplete: true
+  autoComplete: true,
+  placeholder: '',
+  pattern: '.*'
 };
 exports.default = Input;
 
@@ -5322,13 +5331,15 @@ TextArea.propTypes = {
   required: _propTypes2.default.bool,
   name: _propTypes2.default.string,
   className: _propTypes2.default.string,
-  validateOnBlur: _propTypes2.default.bool
+  validateOnBlur: _propTypes2.default.bool,
+  pattern: _propTypes2.default.string
 };
 TextArea.defaultProps = {
   required: false,
   name: '',
   className: 'Input',
-  validateOnBlur: true
+  validateOnBlur: true,
+  pattern: '.*'
 };
 exports.default = TextArea;
 

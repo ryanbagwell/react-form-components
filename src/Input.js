@@ -10,6 +10,8 @@ export default class Input extends React.Component {
     className: PropTypes.string,
     validateOnBlur: PropTypes.bool,
     autoComplete: PropTypes.bool,
+    placeholder: PropTypes.string,
+    pattern: PropTypes.string,
   }
 
   static defaultProps = {
@@ -19,6 +21,8 @@ export default class Input extends React.Component {
     className: 'Input',
     validateOnBlur: true,
     autoComplete: true,
+    placeholder: '',
+    pattern: '.*',
   }
 
   constructor(props) {
@@ -44,6 +48,7 @@ export default class Input extends React.Component {
         required={this.props.required}
         onBlur={this.checkValidityOnBlur}
         autoComplete={this.props.autocomplete}
+        placeholder={this.props.placeholder}
         ref={x => this.el = x} />
     )
 

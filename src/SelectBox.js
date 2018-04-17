@@ -32,6 +32,7 @@ export default class SelectBox extends React.Component {
     name: PropTypes.string,
     className: PropTypes.string,
     placeholder: PropTypes.string,
+    pattern: PropTypes.string,
   }
 
   static defaultProps = {
@@ -42,6 +43,7 @@ export default class SelectBox extends React.Component {
     name: '',
     className: 'SelectBox',
     placeholder: '- select -',
+    pattern: '.*',
   }
 
   constructor(props) {

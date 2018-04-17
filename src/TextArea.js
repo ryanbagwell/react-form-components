@@ -8,6 +8,7 @@ export default class TextArea extends React.Component {
     name: PropTypes.string,
     className: PropTypes.string,
     validateOnBlur: PropTypes.bool,
+    pattern: PropTypes.string,
   }
 
   static defaultProps = {
@@ -15,6 +16,7 @@ export default class TextArea extends React.Component {
     name: '',
     className: 'Input',
     validateOnBlur: true,
+    pattern: '.*',
   }
 
   constructor(props) {
