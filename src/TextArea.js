@@ -9,27 +9,20 @@ export default class TextArea extends React.Component {
     className: PropTypes.string,
     validateOnBlur: PropTypes.bool,
     pattern: PropTypes.string,
+    defaultValue: PropTypes.string,
   }
 
   static defaultProps = {
     required: false,
     name: '',
-    className: 'Input',
+    className: 'Textarea',
     validateOnBlur: true,
     pattern: '.*',
-  }
-
-  constructor(props) {
-    super(props);
-
-    this.state = {}
-
+    defaultValue: '',
   }
 
   checkValidityOnBlur = () => {
-    if (this.props.validateOnBlur) {
-      this.el.checkValidity();
-    }
+    this.props.validateOnBlur && this.el.checkValidity();
   }
 
   render() {
@@ -40,7 +33,8 @@ export default class TextArea extends React.Component {
         name={this.props.name}
         required={this.props.required}
         onBlur={this.checkValidityOnBlur}
-        ref={x => this.el = x} />
+        ref={x => this.el = x}
+        defaultValue={this.props.defaultValue} />
     )
 
   }

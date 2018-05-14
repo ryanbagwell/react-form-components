@@ -5292,20 +5292,20 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var TextArea = function (_React$Component) {
   _inherits(TextArea, _React$Component);
 
-  function TextArea(props) {
+  function TextArea() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
     _classCallCheck(this, TextArea);
 
-    var _this = _possibleConstructorReturn(this, (TextArea.__proto__ || Object.getPrototypeOf(TextArea)).call(this, props));
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
 
-    _this.checkValidityOnBlur = function () {
-      if (_this.props.validateOnBlur) {
-        _this.el.checkValidity();
-      }
-    };
-
-    _this.state = {};
-
-    return _this;
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = TextArea.__proto__ || Object.getPrototypeOf(TextArea)).call.apply(_ref, [this].concat(args))), _this), _this.checkValidityOnBlur = function () {
+      _this.props.validateOnBlur && _this.el.checkValidity();
+    }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(TextArea, [{
@@ -5320,7 +5320,8 @@ var TextArea = function (_React$Component) {
         onBlur: this.checkValidityOnBlur,
         ref: function ref(x) {
           return _this2.el = x;
-        } });
+        },
+        defaultValue: this.props.defaultValue });
     }
   }]);
 
@@ -5332,14 +5333,16 @@ TextArea.propTypes = {
   name: _propTypes2.default.string,
   className: _propTypes2.default.string,
   validateOnBlur: _propTypes2.default.bool,
-  pattern: _propTypes2.default.string
+  pattern: _propTypes2.default.string,
+  defaultValue: _propTypes2.default.string
 };
 TextArea.defaultProps = {
   required: false,
   name: '',
-  className: 'Input',
+  className: 'Textarea',
   validateOnBlur: true,
-  pattern: '.*'
+  pattern: '.*',
+  defaultValue: ''
 };
 exports.default = TextArea;
 
