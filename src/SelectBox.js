@@ -22,7 +22,13 @@ const DownArrow = () => (
 export default class SelectBox extends React.Component {
 
   static propTypes = {
-    choices: PropTypes.array,
+    choices: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.string),
+      PropTypes.arrayOf(PropTypes.shape({
+        displayName: PropTypes.string,
+        value: PropTypes.string,
+      })),
+    ]),
     selectedChoice: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.object,
@@ -46,8 +52,13 @@ export default class SelectBox extends React.Component {
     pattern: '.*',
   }
 
-  constructor(props) {
-    super(props);
+  state = {
+    choices: [],
+    selectedChoice: '',
+  }
+
+
+  static getDerivedStateFromProps (props, state) {
 
     let choices = props.choices.map((choice, i) => {
       if (typeof choice === 'string') {
@@ -61,11 +72,11 @@ export default class SelectBox extends React.Component {
 
     });
 
-    choices = [{displayName: this.props.placeholder, value: ''}].concat(choices)
+    choices = [{displayName: props.placeholder, value: ''}].concat(choices)
 
-    this.state = {
-      choices: choices,
-      selectedChoice: props.selectedChoice || choices[0],
+    return {
+      ...state,
+      choices,
     }
 
   }
