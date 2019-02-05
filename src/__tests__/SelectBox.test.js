@@ -45,6 +45,35 @@ test('Choices can be a objects', () => {
   })
 });
 
+test('Choices change on prop changes', () => {
+  const selectbox = mount(<SelectBox choices={objectChoices} />);
+
+  const newChoices = [
+    {
+      displayName: 'Choice 4',
+      value: 'Choice4',
+    },
+    {
+      displayName: 'Choice 5',
+      value: 'Choice5',
+    },
+    {
+      displayName: 'Choice 6',
+      value: 'Choice6',
+    },
+  ]
+
+  selectbox.setProps({
+    choices: newChoices,
+  })
+
+  let options = selectbox.find('option');
+  newChoices.map((choice, i) => {
+    expect(options.get(i + 1).props.value).toEqual(choice.value);
+    expect(options.get(i + 1).props.children).toEqual(choice.displayName);
+  })
+});
+
 
 test('Can select a string choice and display the correct value', () => {
   const selectbox = mount(<SelectBox choices={stringChoices} />);
