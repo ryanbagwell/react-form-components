@@ -413,19 +413,19 @@ var _SelectBox = __webpack_require__(8);
 
 var _SelectBox2 = _interopRequireDefault(_SelectBox);
 
-var _CheckBox = __webpack_require__(14);
+var _CheckBox = __webpack_require__(15);
 
 var _CheckBox2 = _interopRequireDefault(_CheckBox);
 
-var _Input = __webpack_require__(15);
+var _Input = __webpack_require__(16);
 
 var _Input2 = _interopRequireDefault(_Input);
 
-var _FieldGroup = __webpack_require__(16);
+var _FieldGroup = __webpack_require__(17);
 
 var _FieldGroup2 = _interopRequireDefault(_FieldGroup);
 
-var _TextArea = __webpack_require__(17);
+var _TextArea = __webpack_require__(18);
 
 var _TextArea2 = _interopRequireDefault(_TextArea);
 
@@ -448,8 +448,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -461,6 +459,10 @@ var _react2 = _interopRequireDefault(_react);
 var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _memoizeOne = __webpack_require__(14);
+
+var _memoizeOne2 = _interopRequireDefault(_memoizeOne);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -505,10 +507,26 @@ var SelectBox = function (_React$Component) {
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SelectBox.__proto__ || Object.getPrototypeOf(SelectBox)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
       choices: [],
       selectedChoice: ''
-    }, _this.handleOnChange = function (e) {
+    }, _this.choices = (0, _memoizeOne2.default)(function (choices) {
+
+      var options = choices.map(function (choice, i) {
+        if (typeof choice === 'string') {
+          return {
+            displayName: choice,
+            value: choice
+          };
+        } else {
+          return choice;
+        }
+      });
+
+      options = [{ displayName: _this.props.placeholder, value: '' }].concat(options);
+
+      return options;
+    }), _this.handleOnChange = function (e) {
       var val = e.target.value;
 
-      var selectedChoice = _this.state.choices.find(function (choice) {
+      var selectedChoice = _this.choices(_this.props.choices).find(function (choice) {
 
         if (typeof choice === 'string') {
           return choice === val;
@@ -575,7 +593,7 @@ var SelectBox = function (_React$Component) {
               height: '100%',
               opacity: 0
             } },
-          this.state.choices.map(function (choice, i) {
+          this.choices(this.props.choices).map(function (choice, i) {
             return _react2.default.createElement(
               'option',
               {
@@ -587,27 +605,6 @@ var SelectBox = function (_React$Component) {
           })
         )
       );
-    }
-  }], [{
-    key: 'getDerivedStateFromProps',
-    value: function getDerivedStateFromProps(props, state) {
-
-      var choices = props.choices.map(function (choice, i) {
-        if (typeof choice === 'string') {
-          return {
-            displayName: choice,
-            value: choice
-          };
-        } else {
-          return choice;
-        }
-      });
-
-      choices = [{ displayName: props.placeholder, value: '' }].concat(choices);
-
-      return _extends({}, state, {
-        choices: choices
-      });
     }
   }]);
 
@@ -3263,6 +3260,54 @@ module.exports = checkPropTypes;
 
 /***/ }),
 /* 14 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+var shallowEqual = function shallowEqual(newValue, oldValue) {
+  return newValue === oldValue;
+};
+
+var simpleIsEqual = function simpleIsEqual(newArgs, lastArgs) {
+  return newArgs.length === lastArgs.length && newArgs.every(function (newArg, index) {
+    return shallowEqual(newArg, lastArgs[index]);
+  });
+};
+
+function index (resultFn, isEqual) {
+  if (isEqual === void 0) {
+    isEqual = simpleIsEqual;
+  }
+
+  var lastThis;
+  var lastArgs = [];
+  var lastResult;
+  var calledOnce = false;
+
+  var result = function result() {
+    for (var _len = arguments.length, newArgs = new Array(_len), _key = 0; _key < _len; _key++) {
+      newArgs[_key] = arguments[_key];
+    }
+
+    if (calledOnce && lastThis === this && isEqual(newArgs, lastArgs)) {
+      return lastResult;
+    }
+
+    lastResult = resultFn.apply(this, newArgs);
+    calledOnce = true;
+    lastThis = this;
+    lastArgs = newArgs;
+    return lastResult;
+  };
+
+  return result;
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (index);
+
+
+/***/ }),
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3363,7 +3408,7 @@ Checkbox.defaultProps = {
 exports.default = Checkbox;
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3455,7 +3500,7 @@ Input.defaultProps = {
 exports.default = Input;
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3547,7 +3592,7 @@ FieldGroup.defaultProps = {
 exports.default = FieldGroup;
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

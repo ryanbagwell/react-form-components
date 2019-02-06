@@ -53,6 +53,7 @@
     "friendly-errors-webpack-plugin": "1.6.1",
     "gulp": "3.9.1",
     "jest": "^22.4.3",
+    "memoize-one": "^5.0.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-styleguidist": "^6.5.3",

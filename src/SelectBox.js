@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import memoize from "memoize-one";
 
 const DownArrow = () => (
 
@@ -58,9 +59,9 @@ export default class SelectBox extends React.Component {
   }
 
 
-  static getDerivedStateFromProps (props, state) {
+  choices = memoize((choices) => {
 
-    let choices = props.choices.map((choice, i) => {
+    let options = choices.map((choice, i) => {
       if (typeof choice === 'string') {
         return {
           displayName: choice,
@@ -72,19 +73,16 @@ export default class SelectBox extends React.Component {
 
     });
 
-    choices = [{displayName: props.placeholder, value: ''}].concat(choices)
+    options = [{displayName: this.props.placeholder, value: ''}].concat(options)
 
-    return {
-      ...state,
-      choices,
-    }
+    return options;
 
-  }
+  })
 
   handleOnChange = (e) => {
     let val = e.target.value;
 
-    let selectedChoice = this.state.choices.find((choice) => {
+    let selectedChoice = this.choices(this.props.choices).find((choice) => {
 
       if (typeof choice === 'string') {
         return choice === val;
@@ -143,7 +141,7 @@ export default class SelectBox extends React.Component {
             opacity: 0,
           }}>
           {
-            this.state.choices.map((choice, i) => {
+            this.choices(this.props.choices).map((choice, i) => {
               return (
                 <option
                   key={i}
