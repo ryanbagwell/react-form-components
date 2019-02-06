@@ -44,7 +44,7 @@ export default class SelectBox extends React.Component {
 
   static defaultProps = {
     choices: [],
-    selectedChoice: '',
+    selectedChoice: null,
     arrow: <DownArrow />,
     required: false,
     name: '',
@@ -55,9 +55,17 @@ export default class SelectBox extends React.Component {
 
   state = {
     choices: [],
-    selectedChoice: '',
+    selectedChoice: null,
   }
 
+  constructor(props) {
+    super(props);
+
+    if (props.selectedChoice === null) {
+      this.state.selectedChoice = this.choices(props.choices)[0];
+    }
+
+  }
 
   choices = memoize((choices) => {
 
@@ -73,7 +81,10 @@ export default class SelectBox extends React.Component {
 
     });
 
-    options = [{displayName: this.props.placeholder, value: ''}].concat(options)
+    options = [{
+      displayName: this.props.placeholder,
+      value: ''
+    }].concat(options)
 
     return options;
 
@@ -96,7 +107,7 @@ export default class SelectBox extends React.Component {
 
     this.setState({
       selectedChoice: selectedChoice,
-    })
+    });
 
   }
 

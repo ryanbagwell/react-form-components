@@ -493,21 +493,16 @@ var DownArrow = function DownArrow() {
 var SelectBox = function (_React$Component) {
   _inherits(SelectBox, _React$Component);
 
-  function SelectBox() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
+  function SelectBox(props) {
     _classCallCheck(this, SelectBox);
 
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
+    var _this = _possibleConstructorReturn(this, (SelectBox.__proto__ || Object.getPrototypeOf(SelectBox)).call(this, props));
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SelectBox.__proto__ || Object.getPrototypeOf(SelectBox)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+    _this.state = {
       choices: [],
-      selectedChoice: ''
-    }, _this.choices = (0, _memoizeOne2.default)(function (choices) {
+      selectedChoice: null
+    };
+    _this.choices = (0, _memoizeOne2.default)(function (choices) {
 
       var options = choices.map(function (choice, i) {
         if (typeof choice === 'string') {
@@ -520,10 +515,15 @@ var SelectBox = function (_React$Component) {
         }
       });
 
-      options = [{ displayName: _this.props.placeholder, value: '' }].concat(options);
+      options = [{
+        displayName: _this.props.placeholder,
+        value: ''
+      }].concat(options);
 
       return options;
-    }), _this.handleOnChange = function (e) {
+    });
+
+    _this.handleOnChange = function (e) {
       var val = e.target.value;
 
       var selectedChoice = _this.choices(_this.props.choices).find(function (choice) {
@@ -540,7 +540,13 @@ var SelectBox = function (_React$Component) {
       _this.setState({
         selectedChoice: selectedChoice
       });
-    }, _temp), _possibleConstructorReturn(_this, _ret);
+    };
+
+    if (props.selectedChoice === null) {
+      _this.state.selectedChoice = _this.choices(props.choices)[0];
+    }
+
+    return _this;
   }
 
   _createClass(SelectBox, [{
@@ -626,7 +632,7 @@ SelectBox.propTypes = {
 };
 SelectBox.defaultProps = {
   choices: [],
-  selectedChoice: '',
+  selectedChoice: null,
   arrow: _react2.default.createElement(DownArrow, null),
   required: false,
   name: '',

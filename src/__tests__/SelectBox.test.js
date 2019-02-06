@@ -94,3 +94,9 @@ test('Can select an object choice and display the correct value', () => {
   });
 
 });
+
+test('Component will show placeholder on render', () => {
+  const selectbox = mount(<SelectBox choices={objectChoices} />);
+  const label = selectbox.find('.SelectBox__facade__label');
+  expect(label.get(0).props.children).toEqual(SelectBox.defaultProps.placeholder);
+});
