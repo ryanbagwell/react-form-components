@@ -3476,7 +3476,8 @@ var Input = function (_React$Component) {
         placeholder: this.props.placeholder,
         ref: function ref(x) {
           return _this2.el = x;
-        } });
+        },
+        defaultValue: this.props.defaultValue });
     }
   }]);
 
@@ -3491,7 +3492,8 @@ Input.propTypes = {
   validateOnBlur: _propTypes2.default.bool,
   autoComplete: _propTypes2.default.bool,
   placeholder: _propTypes2.default.string,
-  pattern: _propTypes2.default.string
+  pattern: _propTypes2.default.string,
+  defaultValue: _propTypes2.default.string
 };
 Input.defaultProps = {
   required: false,
@@ -3501,7 +3503,8 @@ Input.defaultProps = {
   validateOnBlur: true,
   autoComplete: true,
   placeholder: '',
-  pattern: '.*'
+  pattern: '.*',
+  defaultValue: ''
 };
 exports.default = Input;
 

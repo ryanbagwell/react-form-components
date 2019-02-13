@@ -12,6 +12,7 @@ export default class Input extends React.Component {
     autoComplete: PropTypes.bool,
     placeholder: PropTypes.string,
     pattern: PropTypes.string,
+    defaultValue: PropTypes.string,
   }
 
   static defaultProps = {
@@ -23,6 +24,7 @@ export default class Input extends React.Component {
     autoComplete: true,
     placeholder: '',
     pattern: '.*',
+    defaultValue: '',
   }
 
   constructor(props) {
@@ -49,7 +51,8 @@ export default class Input extends React.Component {
         onBlur={this.checkValidityOnBlur}
         autoComplete={this.props.autocomplete}
         placeholder={this.props.placeholder}
-        ref={x => this.el = x} />
+        ref={x => this.el = x}
+        defaultValue={this.props.defaultValue} />
     )
 
   }
